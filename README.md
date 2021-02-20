@@ -19,7 +19,9 @@ The format that the data is being sent it in the form of bytes
 # Development Environment
 
 VsCode
+
 Python 3.7.8
+
 Python library’s: Socket, and Random   
 
 # Useful Websites
