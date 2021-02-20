@@ -16,11 +16,15 @@ while True:
         s.bind((HOST, PORT))
         s.listen()
         conn, addr = s.accept()
+        user_data =b''
         with conn:
             print('Connected by', addr)
             while True:
                 user_data = conn.recv(1024)
                 server_move = bytes(rpc[n], 'utf-8')
+                #print(user_data)
+                if user_data == b'stop':
+                    break
 
                 if server_move == b'rock':
                     choice = 'rock'
@@ -49,10 +53,7 @@ while True:
                     if  user_data == b'scissors':
                         final = 'Tie!'
                 
-                if user_data == b'stop':
-                    print("stoped")
-
-                print(user_data)
+                #print(user_data)
                 final_d = ('My choice was ' + choice + '. ' + final)
                 final_d = bytes(final_d, 'utf-8')
 
@@ -60,4 +61,9 @@ while True:
                 conn.sendall(final_d)
                 print("Connection ended")
                 break
-        
+            #print(user_data)
+            if user_data == b'stop':
+                    print("Sever Stoped!")
+                    break
+            
+  
